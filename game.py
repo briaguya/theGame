@@ -6,4 +6,7 @@ class Game(object):
 
     def __init__(self):
         self.deck = Deck();
-        print self.deck
+
+    def play(self):
+    	for card in self.deck.cards:
+    		print card.number
