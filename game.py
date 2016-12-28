@@ -1,12 +1,11 @@
-#import board
 #import player
-from deck import Deck
+from board import Board
 
 class Game(object):
 
     def __init__(self):
-        self.deck = Deck();
+        self.board = Board()
 
     def play(self):
-    	for card in self.deck.cards:
+    	for card in self.board.deck.cards:
     		print card.number
