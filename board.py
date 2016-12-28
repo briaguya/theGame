@@ -8,5 +8,6 @@ class Board(object):
         self.piles = [Pile(d) for d in ["Increasing","Increasing","Decreasing","Decreasing"]]
 
     def show(self):
-    	print '{} {}'.format('one', 'two')
+    	for i in range(max([len(p.cards) for p in self.piles])):
+    		print '| {:>3} | {:>3} | {:>3} | {:>3} |'.format(*[pile.cards[i].number for pile in self.piles])
 

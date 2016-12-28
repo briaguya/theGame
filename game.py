@@ -7,5 +7,4 @@ class Game(object):
         self.board = Board()
 
     def play(self):
-    	for card in self.board.deck.cards:
-    		print card.number
+    	self.board.show()
