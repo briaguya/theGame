@@ -1,3 +1,7 @@
-hand
+from card import Card
 
-import card
+class Hand(object):
+
+    def __init__(self, size):
+    	self.size = size
+        self.cards = []

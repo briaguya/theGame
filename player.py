@@ -1,4 +1,6 @@
-player
-ai/human
+from hand import Hand
 
-import hand
+class Player(object):
+
+    def __init__(self, handSize):
+    	self.hand = Hand(handSize)
