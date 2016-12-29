@@ -1,4 +1,4 @@
-from game import Game
+from commandLineGame import CommandLineGame
 
-game = Game(1)
+game = CommandLineGame(1)
 game.play()
