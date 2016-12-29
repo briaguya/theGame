@@ -6,9 +6,8 @@ class Hand(object):
         self.size = size
         self.cards = []
 
-    def show(self):
-        print '--------- HAND ----------'
-        print ' | '.join(map(str,[card.number for card in self.cards]))
+    def __str__(self):
+        return '--------- HAND ----------\n' +  ' | '.join(map(str,[card.number for card in self.cards]))
 
     def sort(self):
            self.cards.sort(key=lambda card: card.number)

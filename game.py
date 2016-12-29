@@ -12,6 +12,6 @@ class Game(object):
     def play(self):
         self.deck.shuffle()
         self.deck.deal([player.hand for player in self.players])
-        self.board.show()
+        print self.board
         for player in self.players:
-            player.hand.show()
+            print player.hand
