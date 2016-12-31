@@ -8,7 +8,7 @@ class Pile(object):
         self.cards.append(Card(1) if self.direction == "Increasing" else Card(100))
 
     def currentNumber(self):
-        return self.cards[0].number
+        return self.cards[-1].number
 
     def putCardOnPile(self, card):
         # TODO validation logic
