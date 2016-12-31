@@ -22,3 +22,6 @@ class Hand(object):
             return True
         else:
             return False
+
+    def takeCardFromHand(self, card):
+        return self.cards.pop(self.cards.index(card))

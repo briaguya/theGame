@@ -1,4 +1,6 @@
 from commandLineGame import CommandLineGame
 
-game = CommandLineGame(1)
+print 'The Game'
+players = input('How many players? ')
+game = CommandLineGame(players)
 game.play()

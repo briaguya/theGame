@@ -10,5 +10,6 @@ class Board(object):
     def __str__(self):
         output = ''
         for i in range(max([len(p.cards) for p in self.piles])):
-            output += '| {:>3} | {:>3} | {:>3} | {:>3} |\n'.format(*[pile.cards[i].number for pile in self.piles])
+            # print len(pile.cards)
+            output += '| {:>3} | {:>3} | {:>3} | {:>3} |\n'.format(*[pile.cards[i].number for pile in self.piles if len(pile.cards) > i])
         return output[:-1]

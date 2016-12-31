@@ -12,3 +12,7 @@ class Game(object):
     def setup(self):
         self.deck.shuffle()
         self.deck.deal([player.hand for player in self.players])
+
+    def playCard(self, player, card, pile):
+        cardFromHand = player.hand.takeCardFromHand(card)
+        pile.putCardOnPile(cardFromHand)
