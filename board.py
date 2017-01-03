@@ -5,7 +5,7 @@ class Board(object):
 
     def __init__(self):
         self.deck = Deck()
-        self.piles = [Pile(d) for d in ["Increasing","Increasing","Decreasing","Decreasing"]]
+        self.piles = [Pile(d, i) for d, i in [("Increasing",0),("Increasing",1),("Decreasing",2),("Decreasing",3)]]
 
     def __str__(self):
         output = ''

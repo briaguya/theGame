@@ -10,4 +10,7 @@ class ComputerGame(Game):
         self.setup()
         while True:
             self.show(self.turn.player)
-            self.turn.player.getMove(self.board)
+            move = self.turn.player.getMove(self.board)
+            for play in move.plays:
+                self.playCard(self.turn.player,play[0],pileIndex=play[1])
+            self.endTurn()

@@ -2,13 +2,14 @@ from card import Card
 
 class Pile(object):
 
-    def __init__(self, direction):
+    def __init__(self, direction, index):
         self.direction = direction
+        self.index = index
         self.cards = []
         self.cards.append(Card(1) if self.direction == "Increasing" else Card(100))
 
     def scoreWithPlays(self, plays):
-        cards = [play[0] for play in plays if play[1] == self]
+        cards = [play[0] for play in plays if play[1] == self.index]
         if not cards:
             return self.currentScore()
 

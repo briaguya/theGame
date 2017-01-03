@@ -20,9 +20,10 @@ class Game(object):
         self.deck.deal([player.hand for player in self.players])
         self.startTurn(self.players[0])
 
-    def playCard(self, player, card, pile):
+    def playCard(self, player, card, pile = None, pileIndex = None):
         cardFromHand = player.hand.takeCardFromHand(card)
-        pile.putCardOnPile(cardFromHand)
+        if(pile): pile.putCardOnPile(cardFromHand)
+        if(pileIndex): self.board.piles[pileIndex].putCardOnPile(cardFromHand)
         self.turn.cardsPlayed += 1
 
     def startTurn(self, player):

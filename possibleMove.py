@@ -18,7 +18,6 @@ class PossibleMove(object):
 
     def getNextMoves(self):
         self.nextMoves = []
-        print self.score - self.board.currentScore()
         if (self.score - self.board.currentScore()) > self.threshold:
             return
         
@@ -26,28 +25,35 @@ class PossibleMove(object):
             # If we already played this card we can't play it again
             if card.number in [play[0].number for play in self.plays]:
                 continue
-            for pile in self.board.piles:
+            for pileIndex in range(len(self.board.piles)):
                 # If we already played on this pile we need to check that play instead
-                if pile in [play[1] for play in self.plays]:
-                    playIndex = self.listRightIndex([play[1] for play in self.plays], pile)
+                if pileIndex in [play[1] for play in self.plays]:
+                    playIndex = self.listRightIndex([play[1] for play in self.plays], pileIndex)
                     pileCard = self.plays[playIndex][0]
-                    if not pile.canPlay(card,pileCard.number):
+                    if not self.board.piles[pileIndex].canPlay(card,pileCard.number):
                         continue
                 else:
-                    if not pile.canPlay(card):
+                    if not self.board.piles[pileIndex].canPlay(card):
                         continue
 
-                self.nextMoves.append(PossibleMove(self.board, self.hand, self.playCard(card, pile)))
+                self.nextMoves.append(PossibleMove(self.board, self.hand, self.playCard(card, pileIndex)))
 
-    def playCard(self, card, pile):
+    def playCard(self, card, pileIndex):
         plays = copy.deepcopy(self.plays)
-        plays.append([card,pile])
+        plays.append([card,pileIndex])
         return plays
 
     def getBest(self, thisMove):
-        bestMove = thisMove
-        if self.nextMoves:
-            for move in self.nextMoves:
+        bestMove = None
+        bestScore = self.threshold
+        # We need to play at least 2 cards
+        if len(thisMove.plays) >= 2:
+            bestMove = thisMove
+            bestScore = bestMove.score
+        if thisMove.nextMoves:
+            for move in thisMove.nextMoves:
                 nextMove = self.getBest(move)
-                if nextMove.score < bestMove.score: bestMove = nextMove
+                nextScore = self.threshold
+                if nextMove: nextScore = nextMove.score
+                if nextScore < bestScore: bestMove = nextMove
         return bestMove

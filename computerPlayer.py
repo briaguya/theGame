@@ -4,6 +4,6 @@ from possibleMove import PossibleMove
 class ComputerPlayer(Player):
 
     def getMove(self, board):
-        self.move = PossibleMove(board, self.hand)
-        self.move = self.move.bestMove
-        print self.move
+        for threshold in range(20,100,5):
+            move = PossibleMove(board, self.hand, threshold=threshold)
+            if move.bestMove: return move.bestMove
