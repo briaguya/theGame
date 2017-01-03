@@ -23,25 +23,25 @@ class CommandLineGame(Game):
         return card, pile
 
     def getCommand(self):
-        command = raw_input('Play or Draw?')
+        command = raw_input('Play or End Turn?')
         if(command == 'P' or command == 'p' or command == 'Play'):
             return 'Play'
-        elif(command == 'D' or command == 'd' or command == 'Draw'):
-            return 'Draw'
+        elif(command == 'E' or command == 'e' or command == 'End' or command == 'End Turn'):
+            return 'End Turn'
         else:
             return 'Invalid'
 
     def play(self):
         self.setup()
-        for player in self.players:
-            while True:
-                self.show(player)
-                command = self.getCommand()
-                if command == 'Invalid': continue
-                if command == 'Draw':
-                    break
-                if command == 'Play':
-                    card, pile = self.getCard(player)
-                    if card == None or pile == None:
-                        continue
-                    self.playCard(player, card, pile)
+        while True:
+            self.show(self.turn.player)
+            command = self.getCommand()
+            if command == 'Invalid': continue
+            if command == 'End Turn':
+                self.endTurn()
+                continue
+            if command == 'Play':
+                card, pile = self.getCard(self.turn.player)
+                if card == None or pile == None:
+                    continue
+                self.playCard(self.turn.player, card, pile)

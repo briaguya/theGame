@@ -10,6 +10,13 @@ class Pile(object):
     def currentNumber(self):
         return self.cards[-1].number
 
+    def canPlay(self, card):
+        if self.direction == "Increasing":
+            return self.currentNumber() < card.number || card.number == (self.currentNumber() - 10)
+        elif self.direction == "Decreasing":
+            return self.currentNumber() > card.number || card.number == (self.currentNumber() + 10)
+        else return False
+
     def putCardOnPile(self, card):
-        # TODO validation logic
-        self.cards.append(card)
+        if self.canPlay(card):
+            self.cards.append(card)
