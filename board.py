@@ -12,3 +12,9 @@ class Board(object):
         for i in range(max([len(p.cards) for p in self.piles])):
             output += '| {:>3} | {:>3} | {:>3} | {:>3} |\n'.format(*[pile.cards[i].number if len(pile.cards) > i else ' ' for pile in self.piles])
         return output[:-1]
+
+    def currentScore(self):
+        return sum([pile.currentScore() for pile in self.piles])
+
+    def scoreWithPlays(self, plays):
+        return sum([pile.scoreWithPlays(plays) for pile in self.piles])

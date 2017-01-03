@@ -5,11 +5,13 @@ from turn import Turn
 
 class Game(object):
 
-    def __init__(self, numOfPlayers):
+    def __init__(self, numOfPlayers, players = None):
         self.board = Board()
         self.deck = Deck()
         self.numOfPlayers = numOfPlayers
-        self.players = [Player(8 if numOfPlayers == 1 else 7 if numOfPlayers == 2 else 6) for p in range(numOfPlayers)]
+        if players == None:
+            self.players = [Player(8 if numOfPlayers == 1 else 7 if numOfPlayers == 2 else 6) for p in range(numOfPlayers)]
+        else: self.players = players
         self.turn = None
         self.turnsPlayed = 0
 
