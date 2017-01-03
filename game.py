@@ -29,4 +29,5 @@ class Game(object):
     def endTurn(self):
         if self.turn.canEnd():
             self.turnsPlayed += 1
+            self.deck.deal([self.turn.player.hand])
             self.startTurn(self.players[self.turnsPlayed%self.numOfPlayers])
