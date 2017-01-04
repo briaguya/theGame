@@ -11,7 +11,8 @@ class ComputerGame(Game):
         self.setup()
         while True:
             self.show(self.turn.player)
-            move = self.turn.player.getMove(self.board, 2 - self.turn.cardsPlayed)
+            playsPerTurn = 2 if len(self.deck.cards) else 1
+            move = self.turn.player.getMove(self.board, playsPerTurn - self.turn.cardsPlayed)
             if move:
                 for play in move.plays:
                     self.playCard(self.turn.player,play[0],pileIndex=play[1])

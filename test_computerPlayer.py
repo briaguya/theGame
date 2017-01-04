@@ -59,3 +59,15 @@ class TestComputerPlayer(TestCase):
 
         # It should play the 2
         self.assertEqual(move.plays[0][0],Card(2))
+
+    def test_play_45_35_on_8(self):
+        # todo fix this
+        # Player - 2
+        # | | | | |
+        # | 1 | 1 | 100 | 100 |
+        # | 8 | 7 | 89 | 92 |
+        # --------- HAND - ---------
+        # 3 | 6 | 35 | 45 | 52 | 93
+        # Out of moves, game over.
+        # 70 cards left in deck.
+        self.assertTrue(False)

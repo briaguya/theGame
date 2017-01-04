@@ -22,7 +22,7 @@ class PossibleMove(object):
 
     def getNextMoves(self):
         self.nextMoves = []
-        if (self.score - self.board.currentScore()) > self.threshold:
+        if (self.getPlayableSpots([]) - self.spots) > self.threshold:
             return
         
         for card in self.hand.cards:
