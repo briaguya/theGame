@@ -4,9 +4,8 @@ from possibleMove import PossibleMove
 class ComputerPlayer(Player):
 
     def getMove(self, board, playsLeft):
-        for threshold in range(50,200,50):
-            move = PossibleMove(board, self.hand, threshold=threshold, playsLeft=playsLeft)
-            if move.bestMove: return move.bestMove
+        move = PossibleMove(board, self.hand, playsLeft=playsLeft)
+        if move.bestMove: return move.bestMove
 
     def callPiles(self, board):
         calledSomething = False

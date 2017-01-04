@@ -3,7 +3,7 @@ from card import Card
 import copy
 
 class PossibleMove(object):
-    def __init__(self, board, hand, plays = [], threshold = 20, playsLeft = 2):
+    def __init__(self, board, hand, plays = [], threshold = 200, playsLeft = 2):
         self.board = board
         self.hand = hand
         self.plays = plays
@@ -40,7 +40,7 @@ class PossibleMove(object):
                     if not self.board.piles[pileIndex].canPlay(card):
                         continue
 
-                self.nextMoves.append(PossibleMove(self.board, self.hand, self.playCard(card, pileIndex)))
+                self.nextMoves.append(PossibleMove(self.board, self.hand, self.playCard(card, pileIndex), self.threshold, self.playsLeft))
 
     def playCard(self, card, pileIndex):
         plays = copy.deepcopy(self.plays)
