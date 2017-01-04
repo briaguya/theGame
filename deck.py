@@ -13,7 +13,9 @@ class Deck(object):
     def deal(self, hands):
         for hand in hands:
             while hand.canAdd():
-                hand.add(self.draw())
+                if self.cards:
+                    hand.add(self.draw())
+                else: break
 
     def shuffle(self):
-        shuffle(self.cards)        
+        shuffle(self.cards)

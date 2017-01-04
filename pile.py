@@ -31,7 +31,7 @@ class Pile(object):
         elif self.direction == "Decreasing":
             return self.cards[0].number - cards[-1].number      
 
-    def currentScore(self, callWeight = 0):
+    def currentScore(self, callWeight = 10):
         if self.direction == "Increasing":
             return self.currentNumber() - (callWeight if self.called else 0) - self.cards[0].number
         elif self.direction == "Decreasing":
