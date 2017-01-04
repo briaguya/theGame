@@ -40,6 +40,13 @@ class Pile(object):
     def currentNumber(self):
         return self.cards[-1].number
 
+    def canPlayOnPlays(self, card, plays):
+        cards = [play[0] for play in plays if play[1] == self.index]
+        if not cards:
+            return self.canPlay(card)
+
+        return self.canPlay(card, cards[-1].number)
+
     def canPlay(self, card, playingOnNumber = -1):
         if(playingOnNumber == -1):
             playingOnNumber = self.currentNumber()

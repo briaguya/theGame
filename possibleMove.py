@@ -1,4 +1,5 @@
 from board import Board
+from card import Card
 import copy
 
 class PossibleMove(object):
@@ -10,7 +11,9 @@ class PossibleMove(object):
         self.playsLeft = playsLeft
         if self.plays:
             self.score = self.board.scoreWithPlays(plays)
-        else: self.score = self.board.currentScore()
+        else:
+            self.score = self.board.currentScore()
+        self.spots = self.getPlayableSpots(plays)
         self.getNextMoves()
         self.bestMove = self.getBest(self)
 
@@ -46,18 +49,29 @@ class PossibleMove(object):
 
     def getBest(self, thisMove):
         bestMove = None
-        bestScore = 1000
+        bestSpots = 0
         # We need to play at least 2 cards
         if len(thisMove.plays) >= self.playsLeft:
             bestMove = thisMove
-            bestScore = bestMove.score
+            bestSpots = bestMove.spots
         if thisMove.nextMoves:
             for move in thisMove.nextMoves:
                 nextMove = self.getBest(move)
-                nextScore = 1000
+                nextSpots = 0
                 if nextMove:
-                    nextScore = nextMove.score
-                if nextScore < bestScore:
+                    nextSpots = nextMove.spots
+                if nextSpots > bestSpots:
                     bestMove = nextMove
-                    bestScore = nextScore
+                    bestSpots = nextSpots
         return bestMove
+
+    def getPlayableSpots(self, plays):
+        # Get the numbers of all the played cards
+        playedNumbers = [card.number for pile in self.board.piles for card in pile.cards[1:]]
+        # Add the cards from plays
+        playedNumbers.extend([play[0].number for play in plays])
+
+        # All the other numbers are the ones that need to be played still
+        numbersLeft = [number for number in range(2,100) if number not in playedNumbers]
+        # Then we need to see how many are playable
+        return sum([self.board.numberOfPlacesCardCanBePlayed(Card(number),plays) for number in numbersLeft])

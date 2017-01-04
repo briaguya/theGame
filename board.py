@@ -19,3 +19,6 @@ class Board(object):
 
     def scoreWithPlays(self, plays):
         return sum([pile.scoreWithPlays(plays) for pile in self.piles])
+
+    def numberOfPlacesCardCanBePlayed(self, card, plays):
+        return len([pile for pile in self.piles if pile.canPlayOnPlays(card, plays)])
