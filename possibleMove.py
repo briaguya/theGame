@@ -48,7 +48,7 @@ class PossibleMove(object):
         bestMove = None
         bestScore = 1000
         # We need to play at least 2 cards
-        if len(thisMove.plays) >= 2:
+        if len(thisMove.plays) >= self.playsLeft:
             bestMove = thisMove
             bestScore = bestMove.score
         if thisMove.nextMoves:
