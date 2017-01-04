@@ -5,7 +5,7 @@ from random import shuffle
 class Deck(object):
 
     def __init__(self):
-        self.cards = [Card(n) for n in range(1,100)]
+        self.cards = [Card(n) for n in range(2,100)]
 
     def draw(self):
         return self.cards.pop()

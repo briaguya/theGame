@@ -11,6 +11,10 @@ class ComputerGame(Game):
         while True:
             self.show(self.turn.player)
             move = self.turn.player.getMove(self.board)
-            for play in move.plays:
-                self.playCard(self.turn.player,play[0],pileIndex=play[1])
-            self.endTurn()
+            if move:
+                for play in move.plays:
+                    self.playCard(self.turn.player,play[0],pileIndex=play[1])
+                self.endTurn()
+            else:
+                print 'Out of moves, game over.'
+                break

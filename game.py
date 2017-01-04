@@ -23,7 +23,7 @@ class Game(object):
     def playCard(self, player, card, pile = None, pileIndex = None):
         cardFromHand = player.hand.takeCardFromHand(card)
         if(pile): pile.putCardOnPile(cardFromHand)
-        if(pileIndex): self.board.piles[pileIndex].putCardOnPile(cardFromHand)
+        if(pileIndex != None): self.board.piles[pileIndex].putCardOnPile(cardFromHand)
         self.turn.cardsPlayed += 1
 
     def startTurn(self, player):

@@ -45,7 +45,7 @@ class PossibleMove(object):
 
     def getBest(self, thisMove):
         bestMove = None
-        bestScore = self.threshold
+        bestScore = 1000
         # We need to play at least 2 cards
         if len(thisMove.plays) >= 2:
             bestMove = thisMove
@@ -53,7 +53,7 @@ class PossibleMove(object):
         if thisMove.nextMoves:
             for move in thisMove.nextMoves:
                 nextMove = self.getBest(move)
-                nextScore = self.threshold
+                nextScore = 1000
                 if nextMove: nextScore = nextMove.score
                 if nextScore < bestScore: bestMove = nextMove
         return bestMove
