@@ -3,6 +3,7 @@ from game import Game
 class ComputerGame(Game):
     
     def show(self, player):
+        print 'Player - {}'.format(player.name)
         print self.board
         print player.hand
 
@@ -17,4 +18,5 @@ class ComputerGame(Game):
                 self.endTurn()
             else:
                 print 'Out of moves, game over.'
+                print '{} cards left in deck.'.format(len(self.deck.cards))
                 break
