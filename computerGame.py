@@ -11,10 +11,14 @@ class ComputerGame(Game):
         self.setup()
         while True:
             self.show(self.turn.player)
-            move = self.turn.player.getMove(self.board)
+            move = self.turn.player.getMove(self.board, 2 - self.turn.cardsPlayed)
             if move:
                 for play in move.plays:
                     self.playCard(self.turn.player,play[0],pileIndex=play[1])
+                    calledSomething = False
+                    for player in self.players:
+                        calledSomething = calledSomething or player.callPiles(self.board)
+                    if calledSomething: break
                 self.endTurn()
             else:
                 print 'Out of moves, game over.'

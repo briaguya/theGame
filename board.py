@@ -9,6 +9,7 @@ class Board(object):
 
     def __str__(self):
         output = ''
+        output += '| {:>3} | {:>3} | {:>3} | {:>3} |\n'.format(*['x' if pile.called else ' ' for pile in self.piles])
         for i in range(max([len(p.cards) for p in self.piles])):
             output += '| {:>3} | {:>3} | {:>3} | {:>3} |\n'.format(*[pile.cards[i].number if len(pile.cards) > i else ' ' for pile in self.piles])
         return output[:-1]

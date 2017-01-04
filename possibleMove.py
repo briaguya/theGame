@@ -2,11 +2,12 @@ from board import Board
 import copy
 
 class PossibleMove(object):
-    def __init__(self, board, hand, plays = [], threshold = 20):
+    def __init__(self, board, hand, plays = [], threshold = 20, playsLeft = 2):
         self.board = board
         self.hand = hand
         self.plays = plays
         self.threshold = threshold
+        self.playsLeft = playsLeft
         if self.plays:
             self.score = self.board.scoreWithPlays(plays)
         else: self.score = self.board.currentScore()

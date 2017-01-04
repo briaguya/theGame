@@ -7,6 +7,7 @@ class Pile(object):
         self.index = index
         self.cards = []
         self.cards.append(Card(1) if self.direction == "Increasing" else Card(100))
+        self.called = False
 
     def scoreWithPlays(self, plays):
         cards = [play[0] for play in plays if play[1] == self.index]
@@ -30,11 +31,11 @@ class Pile(object):
         elif self.direction == "Decreasing":
             return self.cards[0].number - cards[-1].number      
 
-    def currentScore(self):
+    def currentScore(self, callWeight = 0):
         if self.direction == "Increasing":
-            return self.currentNumber() - self.cards[0].number
+            return self.currentNumber() - (callWeight if self.called else 0) - self.cards[0].number
         elif self.direction == "Decreasing":
-            return self.cards[0].number - self.currentNumber()
+            return self.cards[0].number + (callWeight if self.called else 0) - self.currentNumber()
 
     def currentNumber(self):
         return self.cards[-1].number
@@ -51,3 +52,13 @@ class Pile(object):
     def putCardOnPile(self, card):
         if self.canPlay(card):
             self.cards.append(card)
+            self.called = False
+
+    def canJumpBack(self, card, playingOnNumber = -1):
+        if(playingOnNumber == -1):
+            playingOnNumber = self.currentNumber()
+        if self.direction == "Increasing":
+            return card.number == (playingOnNumber - 10)
+        elif self.direction == "Decreasing":
+            return card.number == (playingOnNumber + 10)
+        else: return False
