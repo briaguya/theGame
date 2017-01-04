@@ -54,6 +54,9 @@ class PossibleMove(object):
             for move in thisMove.nextMoves:
                 nextMove = self.getBest(move)
                 nextScore = 1000
-                if nextMove: nextScore = nextMove.score
-                if nextScore < bestScore: bestMove = nextMove
+                if nextMove:
+                    nextScore = nextMove.score
+                if nextScore < bestScore:
+                    bestMove = nextMove
+                    bestScore = nextScore
         return bestMove
